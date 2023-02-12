@@ -1,0 +1,10 @@
+FROM [SOURCE IMAGE HERE]
+
+WORKDIR /home/dev/
+
+RUN adduser -u 1000 --system --group dev --shell /bin/bash
+
+RUN chown -R dev /home/dev
+USER dev
+
+CMD [ "/bin/bash" ]

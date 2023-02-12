@@ -1,0 +1,15 @@
+repo_dir=$(dirname $(pwd))
+project_name="[PROJECT NAME HERE]"
+
+if docker ps | grep -q "${project_name}"; then
+  docker stop "${project_name}"
+fi
+
+if docker ps -a | grep -q "${project_name}"; then
+  docker rm "${project_name}"
+fi
+
+docker run -t -d \
+  --name "${project_name}" \
+  -v "${repo_dir}:/home/dev" \
+  "${project_name}:latest"
